@@ -19,16 +19,19 @@ I contacted the author to get feedback on the morphological metrics. The .ipynb 
 
 If computing metrics is an dead end, there is still another ways to exploit tif images, i.e. using keras framework (next part)
 
- ## Using Keras 
+ ## Using Pretrained Model for subimage classication
  Keras function image_dataset_from_directory() does not work with .tif images. There is two ways to bypass this issues. First one is to convert all tif in jpeg with Pillow, and save them in another directory, but this require some space on the computer. The second way is to create a dataframe containing .tif adress and then exploit datagen.flow_from_dataframe() function.
 
 One could then develop is own deep learning algorithm, which would require a lot of time, and probably more data. Another ways, is to exploit already existing deep learning models, and especially the ones specialized in image processing. Test with VGG16 pretrained model is excellent as I reached a 98% precision. I also want to test another well know model, Resnet50, just for comparison.
-
+However those models work once a full image is decomposed into individiual subimage, each one corresponding to exactly one seed,
 <p align="center">
  <img width="800" src=Keras_output_exple.png>
  </p>
 
+## Using Unet model from scratch for segmentation
+In theory it should work, but there is a problem as starchy and vitreous seed are confounded. 
+
 # Video
   TO DO
-  Here I will use the Keras framework and the fine tuned model in the previous section. The main job is to make a code to read videos  and the apply the fined model for autmatic dectection. One open question (for now) is how deal with consecutive images (image i and image i+1) which shared a large amount of data. Should I process the two image separately and check for difference or should I process only the part of image i+1 that does not exist in image i ? 
+  Here I have to use a model defined before, The main job is to make a code to read videos  and to apply the fined model for automatic dectection. One open question (for now) is how deal with consecutive images (image i and image i+1) which shared a large amount of data. Should I process the two image separately and check for difference or should I process only the part of image i+1 that does not exist in image i ? 
 
