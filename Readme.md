@@ -30,6 +30,15 @@ However those models work once a full image is decomposed into individiual subim
 
 ## Using Unet model from scratch for segmentation
 In theory it should work, but there is a problem as starchy and vitreous seed are confounded. 
+The Unet model is built from scratch. In the model, I change color base from RGB to  YIQ, that is the color for analog NTSC color TV. Also, I used weakly relu (with decay=0.1) instead of a relu activation to deal with 'dead nodes'.
+And I changed the loss function to not consider the background, as the purpose is to identify seeds and not to find to the backround.
+Even with my best effort, there is still issues... The following figure show that Vitreous prediction 'spread' on other classes. In other test I made, Vitreous or Starchy were confounded,... or even not predicted.
+In fact, disctinction between Vitreous and non-Vitreous (Starchy) is difficult even for human eye (at least for me). Maybe I have to create a new color base, to a transformation (which one?) in the Unet input, or to consider multiple loss function together. The question is really tricky
+
+<p align="center">
+ <img width="800" src=confusion_matrix_Unet.png>
+ </p>
+
 
 # Video
   TO DO
