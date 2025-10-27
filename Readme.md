@@ -15,7 +15,7 @@ From author metrics, a fine tuning of k-neighbours and of a random forest show a
 Classification_Images.ipynb contains morphological and color metrics for each wheat seed identified in Vitreous, Starchy and Foreign images. However classification is very sensitive to morphological metrics, and I am not sure of their correct definitions. The formulas used for morphological metrics are taken from my understanding of the .docx file given by the author. However I am not sure if those formulas are correct as some of them highly differs from what I found on specialized website.  For the experiment, I changed on purpose de morphological metrics and it seems that their exact formulation is crucial.
 Note here : I decomposed all images in subimages. A subimage correspond to one seed. This is different from usual image analysis, where one image correspond to image saved on computer (i.e a photographie of multiple seeds)
 
-I contacted the author to get feedback on the morphological metrics. The .ipynb is on github as communication support. However I never get anys answers.  Conclusion here is that computed metrics does not work. However some of the metrics computed by the authors, make no sense. For example, they measures negative ellispe's eccentricity, which is by definition impossible.
+I contacted the author to get feedback on the morphological metrics. The .ipynb is on github as communication support. However I never get anys answers.  Conclusion here is that computed metrics does not work. However some of the metrics computed by the authors, make no sense. For example, they measure negative ellispe's eccentricity, which is by definition impossible.
 
 If computing metrics is an dead end, there is still another ways to exploit tif images, i.e. using keras framework (next part)
 
@@ -33,14 +33,14 @@ In theory it should work, but there is a problem as starchy and vitreous seed ar
 The Unet model is built from scratch. In the model, I change color base from RGB to  YIQ, that is the color for analog NTSC color TV. Also, I used weakly relu (with decay=0.1) instead of a relu activation to deal with 'dead nodes'.
 And I changed the loss function to not consider the background, as the purpose is to identify seeds and not to find to the backround.
 Even with my best effort, there is still issues... The following figure show that Vitreous prediction 'spread' on other classes. In other test I made, Vitreous or Starchy were confounded,... or even not predicted.
-In fact, disctinction between Vitreous and non-Vitreous (Starchy) is difficult even for human eye (at least for me). Maybe I have to create a new color base, to a transformation (which one?) in the Unet input, or to consider multiple loss function together. The question is really tricky
-
+In fact, distinction between Vitreous and non-Vitreous (Starchy) is difficult even for human eye (at least for me). I made a color gamma correction and change the RGB color base to YIQ, which is the color space used by the analog NTSC color TV system.  This significanlty improved the results. 
+For now, model is trained only 24 times, and no data augmentation is used, so I think there is still room for improvment.
 <p align="center">
  <img width="800" src=confusion_matrix_Unet.png>
  </p>
+This result is very encouraging, as distinction between Vitreous and non-Vitreous is a real challenge in wheat economy. 
 
-
-# Video
+# Video (maybe)
   TO DO
-  Here I have to use a model defined before, The main job is to make a code to read videos  and to apply the fined model for automatic dectection. One open question (for now) is how deal with consecutive images (image i and image i+1) which shared a large amount of data. Should I process the two image separately and check for difference or should I process only the part of image i+1 that does not exist in image i ? 
+  Here I have to use a model defined before, The main job is to make a code to read videos  and to apply the fined model for automatic detection. One open question (for now) is how deal with consecutive images (image i and image i+1) which shared a large amount of data. Should I process the two image separately and check for difference or should I process only the part of image i+1 that does not exist in image i ? 
 
