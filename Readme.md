@@ -35,9 +35,7 @@ And I changed the loss function to not consider the background, as the purpose i
 Even with my best effort, there is still issues... The following figure show that Vitreous prediction 'spread' on other classes. In other test I made, Vitreous or Starchy were confounded,... or even not predicted.
 In fact, distinction between Vitreous and non-Vitreous (Starchy) is difficult even for human eye (at least for me). I made a color gamma correction and change the RGB color base to YIQ, which is the color space used by the analog NTSC color TV system.  This significanlty improved the results. 
 For now, model is trained only 24 times, and no data augmentation is used, so I think there is still room for improvment.
-<p align="center">
- <img width="800" src=confusion_matrix_Unet.png>
- </p>
+
 This result is very encouraging, as distinction between Vitreous and non-Vitreous is a real challenge in wheat economy. 
 
 # Video (maybe)
