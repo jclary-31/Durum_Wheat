@@ -1,7 +1,7 @@
 database : https://www.muratkoklu.com/datasets/ 'Durum Wheat Dataset' (bottom of the page)
 
 # Quick Intro
-This is an exploration of a Drum Wheat Database. I wanted a database containing data in a standard format as well as image to compare ML classification from text information, from images, and from videos. Data in file give a first approach to understand the classification, investigation on image will help to build keys functions, and finally findings will be used on videos to have near-real time classification
+This is an exploration of a Durum Wheat Database. I wanted a database containing data in a standard format as well as image to compare ML classification from text information, from images, and from videos. Data in file give a first approach to understand the classification, investigation on image will help to build keys functions, and finally findings will be used on videos to have near-real time classification. This project is more complex that it seems because 1) metrics obtained by the author are strange to me, and 2) visual differenciation is between vitreous and starchy is not trivial.
 
 
 # Classification from author excel files
