@@ -30,15 +30,15 @@ However those models work once a full image is decomposed into individiual subim
 
 ## Using Unet model from scratch for segmentation
 In theory it should work, but there is a problem as starchy and vitreous seed are confounded. 
-The Unet model is built from scratch. In the model, I change color base from RGB to  YIQ, that is the color for analog NTSC color TV. Also, I used weakly relu (with decay=0.1) instead of a relu activation to deal with 'dead nodes'.
-And I changed the loss function to not consider the background, as the purpose is to identify seeds and not to find to the backround.
+The Unet model is built from scratch. In the model, I change color base from RGB to  YIQ, that is the color for analog NTSC color TV. Also, I used weakly relu (with decay=0.1) instead of a relu activation to deal with 'dead nodes'. And I changed the loss function a little.
 Even with my best effort, there is still issues... The following figure show that Vitreous prediction 'spread' on other classes. In other test I made, Vitreous or Starchy were confounded,... or even not predicted.
 In fact, distinction between Vitreous and non-Vitreous (Starchy) is difficult even for human eye (at least for me). I made a color gamma correction and change the RGB color base to YIQ, which is the color space used by the analog NTSC color TV system.  This significanlty improved the results. 
 For now, model is trained only 24 times, and no data augmentation is used, so I think there is still room for improvment.
 <p align="center">
  <img width="800" src=confusion_matrix_Unet.png>
  </p>
-This result is very encouraging, as distinction between Vitreous and non-Vitreous is a real challenge in wheat economy. 
+This result is very encouraging, as distinction between Vitreous and non-Vitreous is a real challenge in wheat economy. I plan to implement a datagenerator in order to get more training examples. It should improve the results somehow, but my guess is that the model needs some kind of 'pretraitement' by increasing contrast for example.
+
 
 # Video (maybe)
   TO DO
